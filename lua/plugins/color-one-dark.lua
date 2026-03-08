@@ -4,7 +4,10 @@ return {
 	priority = 999,
 	config = function()
         require('onedark').setup {
-            style = 'dark'
+            style = 'dark',
+            highlights = {
+                ['@constructor'] = { fg = '$yellow', fmt = 'none' },
+            },
         }
         require('onedark').load()
 		vim.cmd('colorscheme onedark')

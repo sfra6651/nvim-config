@@ -30,6 +30,8 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
+                "zls",
+                "clangd",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -42,6 +44,22 @@ return {
                    require("rust-tools").setup {}
                 end,
 
+                ["gopls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.gopls.setup {
+                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            if client.supports_method("textDocument/formatting") then
+                                vim.api.nvim_create_autocmd("BufWritePre", {
+                                    buffer = bufnr,
+                                    callback = function()
+                                        vim.lsp.buf.format({ async = false })
+                                    end,
+                                })
+                            end
+                        end,
+                    }
+                end,
 
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
@@ -55,6 +73,21 @@ return {
                                 }
                             }
                         }
+                    }
+                end,
+
+                ["clangd"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.clangd.setup {
+                        capabilities = capabilities,
+                        cmd = {
+                            "clangd",
+                            "--background-index",
+                            --"--clang-tidy",
+                            "--header-insertion=iwyu",
+                            "--completion-style=detailed",
+                        },
+                        filetypes = { "c", "cpp", "cuda", "proto"},
                     }
                 end,
             }

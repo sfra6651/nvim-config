@@ -1,9 +1,14 @@
 local config = function()
   local telescope = require('telescope')
+  local actions = require('telescope.actions')
+
   telescope.setup({
     defaults = {
       mappings = {
         i = {},
+        n = {
+            ["dd"] = actions.delete_buffer + actions.move_to_top,
+        },
       },
     },
   pickers = {
