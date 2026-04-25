@@ -1,9 +1,9 @@
 local opt = vim.opt
 
 -- Tab / Indentaions
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
 opt.expandtab = true
 opt.smartindent =true
 opt.wrap = false
@@ -11,6 +11,16 @@ opt.wrap = false
 -- Search
 opt.incsearch = true
 opt.ignorecase = true
+
+-- Auto-clear search highlight when not navigating matches (n/N/*/# etc)
+vim.on_key(function(char)
+  if vim.fn.mode() == 'n' then
+    local new_hlsearch = vim.tbl_contains({ '<CR>', 'n', 'N', '*', '#', '?', '/' }, vim.fn.keytrans(char))
+    if vim.opt.hlsearch:get() ~= new_hlsearch then
+      vim.opt.hlsearch = new_hlsearch
+    end
+  end
+end, vim.api.nvim_create_namespace('auto_hlsearch'))
 
 -- Appearance
 opt.relativenumber = true

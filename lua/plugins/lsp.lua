@@ -119,6 +119,9 @@ return {
         })
 
         cmp.setup({
+            completion = {
+                autocomplete = false, -- don't trigger automatically; use <C-Space> to show
+            },
             snippet = {
                 expand = function(args)
                     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.

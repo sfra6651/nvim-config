@@ -22,7 +22,7 @@ local opts = {
 		lazy = true,
 	},
 	install = {
-		colorscheme = {"onedark" }
+		colorscheme = {"my_minimal", "onedark"}
 	},
 	rtp = {
 		disabled_plugins = {
@@ -43,3 +43,6 @@ local opts = {
 
 
 require("lazy").setup('plugins', opts)
+
+-- Active colorscheme. Options: 'my_minimal' (local, colors/my_minimal.lua), 'onedark' (plugin).
+vim.cmd('colorscheme my_minimal')

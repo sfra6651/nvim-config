@@ -4,6 +4,7 @@ return {
   opts = {
      filters = {
 				dotfiles = false,
+				git_ignored = false,
 			},
 			view = {
 				adaptive_size = true,
