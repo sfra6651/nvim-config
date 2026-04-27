@@ -46,33 +46,6 @@ The role each key plays is fixed; only the hex value varies.
 | `bg_visual`     | `Visual`, `QuickFixLine`, `TelescopeSelection`      | —                                                                                                                    | —                                                                |
 | `bg_cursor`     | `CursorLine`                                        | —                                                                                                                    | —                                                                |
 
-## Existing `my_*` schemes — palette reference
-
-The hex values currently bound in each scheme. Use these as a sanity check
-when adding a new scheme: every key listed here must be present in any new
-`my_*` palette.
-
-| Role            | `my_matrix_color_scheme` | `my_one_dark_minimal`   | Notes                                                  |
-| --------------- | ------------------------ | ----------------------- | ------------------------------------------------------ |
-| `bg`            | `#000000`                | `#282c34`               |                                                        |
-| `bg_alt`        | `#0a0f0a`                | `#31353f`               | Floats, statusline, pmenu, tabline                     |
-| `bg_visual`     | `#0f3010`                | `#3b3f4c`               | Visual selection, telescope selection                  |
-| `bg_cursor`     | `#0f1f0f`                | `#2c313a`               | `CursorLine`                                           |
-| `fg`            | `#d4d4d4`                | `#abb2bf`               | Default text — most code stays this color              |
-| `fg_dim`        | `#008f11`                | `#5c6370`               | UI chrome (line nums, signs, splits)                   |
-| `accent_bright` | `#39ff14` (neon green)   | `#e5c07b` (yellow)      | Titles, search, special chars                          |
-| `func`          | `#2ee658`                | `#61afef` (blue)        | Functions and methods                                  |
-| `builtin`       | `#00b833`                | `#c678dd` (purple)      | Control flow, builtin types/constants, storage class   |
-| `comment`       | `#2d5a2d` (italic)       | `#5c6370` (italic)      |                                                        |
-| `string`        | `#4a8a4a`                | `#98c379` (green)       |                                                        |
-| `operator`      | `#7fff7f`                | `#e5c07b` (yellow)      | `::`, `<`, `>`, `&&`, `||`, etc.                       |
-| `macro`         | `#00ffaa` (teal-green)   | `#56b6c2` (teal)        | Macro names — both function-like and object-like       |
-| `preproc`       | `#1f5a30` (dim green)    | `#8a3fa0` (dark_purple) | `#include` / `#define` / `#ifdef` / `#if` / `#endif` directives |
-| `error`         | `#ff3333`                | `#e86671`               |                                                        |
-| `warning`       | `#ffcc00`                | `#e5c07b`               |                                                        |
-| `info`          | `#00ffff`                | `#56b6c2`               |                                                        |
-| `hint`          | `#33ff99`                | `#56b6c2`               |                                                        |
-
 ## Notable choices
 
 - **Numbers stay default fg.** They are literals, not built-ins; coloring them
@@ -115,5 +88,4 @@ when adding a new scheme: every key listed here must be present in any new
    - legacy vim groups (`hl(0, 'GroupName', ...)`)
    - treesitter captures (`hl(0, '@capture.name', ...)`)
    - LSP semantic tokens (`hl(0, '@lsp.type.kind', ...)`) if applicable
-3. Update the "Roles and the groups they cover" and "Existing `my_*` schemes
-   — palette reference" tables above.
+3. Update the "Roles and the groups they cover" table above.
