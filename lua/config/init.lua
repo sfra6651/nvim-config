@@ -45,4 +45,4 @@ local opts = {
 require("lazy").setup('plugins', opts)
 
 -- Active colorscheme. Options: 'my_matrix_color_scheme' (local, colors/my_matrix_color_scheme.lua), 'onedark' (plugin).
-vim.cmd('colorscheme my_matrix_color_scheme')
+vim.cmd('colorscheme my_matrix_soft')
