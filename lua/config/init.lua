@@ -22,7 +22,7 @@ local opts = {
 		lazy = true,
 	},
 	install = {
-		colorscheme = {"my_minimal", "onedark"}
+		colorscheme = {"my_matrix_color_scheme", "onedark"}
 	},
 	rtp = {
 		disabled_plugins = {
@@ -44,5 +44,5 @@ local opts = {
 
 require("lazy").setup('plugins', opts)
 
--- Active colorscheme. Options: 'my_minimal' (local, colors/my_minimal.lua), 'onedark' (plugin).
-vim.cmd('colorscheme my_minimal')
+-- Active colorscheme. Options: 'my_matrix_color_scheme' (local, colors/my_matrix_color_scheme.lua), 'onedark' (plugin).
+vim.cmd('colorscheme my_matrix_color_scheme')

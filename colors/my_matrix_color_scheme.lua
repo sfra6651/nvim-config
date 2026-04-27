@@ -1,7 +1,7 @@
--- my_minimal: minimal matrix colorscheme on a black background.
+-- my_matrix_color_scheme: minimal matrix colorscheme on a black background.
 -- Default text white. Functions, built-ins, and control flow all matrix green.
 -- Strings are a slightly brighter muted green; comments are darker italic.
--- Activate with: :colorscheme my_minimal
+-- Activate with: :colorscheme my_matrix_color_scheme
 
 vim.cmd('hi clear')
 if vim.fn.exists('syntax_on') then
@@ -9,7 +9,7 @@ if vim.fn.exists('syntax_on') then
 end
 
 vim.o.background = 'dark'
-vim.g.colors_name = 'my_minimal'
+vim.g.colors_name = 'my_matrix_color_scheme'
 
 local c = {
     bg            = '#000000',
