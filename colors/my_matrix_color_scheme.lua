@@ -23,6 +23,9 @@ local c = {
     builtin       = '#00b833', -- darker matrix green: built-ins, control flow
     comment       = '#2d5a2d', -- muted dark green: comments
     string        = '#4a8a4a', -- slightly brighter muted green: strings
+    operator      = '#7fff7f', -- light matrix green: ::, <, >, &&, etc.
+    macro         = '#00ffaa', -- teal-green: macros (#define, function-like macros)
+    preproc       = '#1f5a30', -- dim dark green: #include, #define, #ifdef directives
     error         = '#ff3333',
     warning       = '#ffcc00',
     info          = '#00ffff',
@@ -117,14 +120,14 @@ hl(0, 'Repeat',          { fg = c.builtin })
 hl(0, 'Label',           { fg = c.builtin })
 hl(0, 'Exception',       { fg = c.builtin })
 hl(0, 'Keyword',         { fg = c.fg })
-hl(0, 'Operator',        { fg = c.fg })
+hl(0, 'Operator',        { fg = c.operator })
 
--- Preprocessor (#include, #define, etc.): default fg
-hl(0, 'PreProc',         { fg = c.fg })
-hl(0, 'Include',         { fg = c.fg })
-hl(0, 'Define',          { fg = c.fg })
-hl(0, 'Macro',           { fg = c.fg })
-hl(0, 'PreCondit',       { fg = c.fg })
+-- Preprocessor (#include, #define, etc.): dim dark green for directives, teal for macro names
+hl(0, 'PreProc',         { fg = c.preproc })
+hl(0, 'Include',         { fg = c.preproc })
+hl(0, 'Define',          { fg = c.macro })
+hl(0, 'Macro',           { fg = c.macro })
+hl(0, 'PreCondit',       { fg = c.preproc })
 
 -- Types and storage keywords: default fg (user-defined types unchanged)
 hl(0, 'Type',            { fg = c.fg })
@@ -159,8 +162,8 @@ hl(0, '@keyword.return',       { fg = c.builtin })
 hl(0, '@keyword.exception',    { fg = c.builtin })
 hl(0, '@keyword.conditional',  { fg = c.builtin })
 hl(0, '@keyword.repeat',       { fg = c.builtin })
-hl(0, '@keyword.operator',     { fg = c.fg })
-hl(0, '@keyword.import',       { fg = c.fg })
+hl(0, '@keyword.operator',     { fg = c.operator })
+hl(0, '@keyword.import',       { fg = c.preproc })
 hl(0, '@conditional',          { fg = c.builtin })
 hl(0, '@repeat',               { fg = c.builtin })
 hl(0, '@exception',            { fg = c.builtin })
@@ -169,7 +172,7 @@ hl(0, '@label',                { fg = c.builtin })
 hl(0, '@function',             { link = 'Function' })
 hl(0, '@function.call',        { fg = c.func })
 hl(0, '@function.builtin',     { fg = c.func })
-hl(0, '@function.macro',       { fg = c.func })
+hl(0, '@function.macro',       { fg = c.macro })
 hl(0, '@method',               { fg = c.func })
 hl(0, '@method.call',          { fg = c.func })
 
@@ -177,12 +180,12 @@ hl(0, '@variable',             { fg = c.fg })
 hl(0, '@variable.builtin',     { fg = c.fg }) -- this, self: keep default fg
 hl(0, '@constant',             { fg = c.fg })      -- user constants stay default
 hl(0, '@constant.builtin',     { fg = c.builtin }) -- nullptr, NULL, true, false
-hl(0, '@constant.macro',       { fg = c.fg })
+hl(0, '@constant.macro',       { fg = c.macro })
 
-hl(0, '@operator',             { fg = c.fg })
+hl(0, '@operator',             { fg = c.operator })
 hl(0, '@punctuation',          { fg = c.fg })
 hl(0, '@punctuation.bracket',  { fg = c.fg })
-hl(0, '@punctuation.delimiter',{ fg = c.fg })
+hl(0, '@punctuation.delimiter',{ fg = c.operator }) -- :: in cpp, etc.
 hl(0, '@punctuation.special',  { fg = c.accent_bright })
 
 -- Types: user-defined stay fg, only built-in types are purple
@@ -200,9 +203,10 @@ hl(0, '@parameter',            { fg = c.fg })
 hl(0, '@attribute',            { fg = c.fg })
 hl(0, '@namespace',            { fg = c.fg })
 
-hl(0, '@preproc',              { fg = c.fg })
-hl(0, '@include',              { fg = c.fg })
-hl(0, '@define',               { fg = c.fg })
+hl(0, '@preproc',              { fg = c.preproc })
+hl(0, '@include',              { fg = c.preproc })
+hl(0, '@define',               { fg = c.macro })
+hl(0, '@keyword.directive',    { fg = c.preproc }) -- newer ts: #include, #if, #ifdef
 
 -- Markup
 hl(0, '@tag',                  { fg = c.fg })
@@ -233,8 +237,9 @@ hl(0, '@lsp.type.enumMember',    { fg = c.fg })
 -- Functions/methods → blue. Macros/keywords → default fg.
 hl(0, '@lsp.type.function',      { fg = c.func })
 hl(0, '@lsp.type.method',        { fg = c.func })
-hl(0, '@lsp.type.macro',         { fg = c.fg })
+hl(0, '@lsp.type.macro',         { fg = c.macro })
 hl(0, '@lsp.type.keyword',       { fg = c.fg })
+hl(0, '@lsp.type.operator',      { fg = c.operator })
 hl(0, '@lsp.type.modifier',      { fg = c.builtin }) -- clangd: constexpr, static, etc.
 hl(0, '@lsp.type.string',        { link = 'String' })
 hl(0, '@lsp.type.number',        { link = 'Number' })
