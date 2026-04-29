@@ -1,4 +1,4 @@
--- my_matrix_soft: softer, lower-contrast variant of my_matrix_color_scheme.
+-- my_matrix_soft: matrix-green colorscheme, softer and lower-contrast than a pure-black variant.
 -- Same matrix-green identity, but desaturated and shifted toward readability:
 -- background is a dark green-tinted charcoal (not pure black), foreground is a
 -- warm grey-green (not pure white), and every accent green is muted so long
@@ -188,6 +188,7 @@ hl(0, '@type.definition',      { fg = c.fg })
 hl(0, '@type.qualifier',       { fg = c.builtin })
 hl(0, '@keyword.modifier',     { fg = c.builtin })
 hl(0, '@keyword.storage',      { fg = c.builtin })
+hl(0, '@keyword.type.cpp',     { fg = c.builtin })
 hl(0, '@constructor',          { fg = c.fg })
 hl(0, '@field',                { fg = c.fg })
 hl(0, '@property',             { fg = c.fg })

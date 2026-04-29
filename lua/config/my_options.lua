@@ -25,6 +25,7 @@ end, vim.api.nvim_create_namespace('auto_hlsearch'))
 -- Appearance
 opt.relativenumber = true
 opt.termguicolors = true
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250"
 -- opt.colorcolumn = '100'
 -- opt.signcolumn = "yes"
 opt.cmdheight = 1

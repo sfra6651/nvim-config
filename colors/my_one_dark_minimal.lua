@@ -1,4 +1,4 @@
--- my_one_dark_minimal: OneDark palette with the my_matrix_color_scheme highlight rules.
+-- my_one_dark_minimal: OneDark palette wired through the shared my_* highlight role structure.
 -- Default text light grey. Functions blue, built-ins / control flow purple, strings green,
 -- comments grey italic. User-defined types, variables, members, params stay default fg.
 -- Activate with: :colorscheme my_one_dark_minimal
