@@ -83,7 +83,7 @@ The role each key plays is fixed; only the hex value varies.
 ## Adding a new role across all `my_*` schemes
 
 1. Add a key to the `c` palette in **every** `my_*` scheme file (currently
-   `my_matrix_soft.lua` and `my_one_dark_minimal.lua`).
+   `my_matrix.lua` and `my_one_dark_minimal.lua`).
 2. Wire the role through the three layers:
    - legacy vim groups (`hl(0, 'GroupName', ...)`)
    - treesitter captures (`hl(0, '@capture.name', ...)`)

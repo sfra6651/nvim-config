@@ -1,9 +1,9 @@
--- my_matrix_soft: matrix-green colorscheme, softer and lower-contrast than a pure-black variant.
+-- my_matrix: matrix-green colorscheme, softer and lower-contrast than a pure-black variant.
 -- Same matrix-green identity, but desaturated and shifted toward readability:
 -- background is a dark green-tinted charcoal (not pure black), foreground is a
 -- warm grey-green (not pure white), and every accent green is muted so long
 -- coding sessions don't strain the eyes.
--- Activate with: :colorscheme my_matrix_soft
+-- Activate with: :colorscheme my_matrix
 
 vim.cmd('hi clear')
 if vim.fn.exists('syntax_on') then
@@ -11,7 +11,7 @@ if vim.fn.exists('syntax_on') then
 end
 
 vim.o.background = 'dark'
-vim.g.colors_name = 'my_matrix_soft'
+vim.g.colors_name = 'my_matrix'
 
 local c = {
     bg            = '#161616', -- very dark off-black grey (no green tint)
