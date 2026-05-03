@@ -6,6 +6,11 @@ vim.keymap.set("n", "<leader>f", ":NvimTreeToggle<CR>", {  desc = 'toggle file t
 vim.keymap.set('n', '<leader>n', ':bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>p', ':bprev<CR>', { desc = 'Previous buffer' })
 
+-- Buffer navigation (barbar.nvim) -- linux/tabs
+-- vim.keymap.set('n', '<leader>n', '<cmd>BufferNext<CR>', { desc = 'Next buffer' })
+-- vim.keymap.set('n', '<leader>p', '<cmd>BufferPrevious<CR>', { desc = 'Previous buffer' })
+-- vim.keymap.set('n', '<leader>bc', '<cmd>BufferClose<CR>', { desc = 'Close buffer' })
+
 -- Save
 vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", {desc = "write file"})
 
