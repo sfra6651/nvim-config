@@ -29,68 +29,38 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "gopls",
                 "zls",
                 "clangd",
             },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
+            -- mason-lspconfig 2.x calls vim.lsp.enable() automatically for
+            -- ensure_installed servers. Per-server overrides go in
+            -- vim.lsp.config(<name>, {...}) below.
+        })
 
-                ["rust_analyzer"] = function()
-                   require("rust-tools").setup {}
-                end,
+        -- Defaults applied to every server.
+        vim.lsp.config("*", { capabilities = capabilities })
 
-                ["gopls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.gopls.setup {
-                        capabilities = capabilities,
-                        on_attach = function(client, bufnr)
-                            if client.supports_method("textDocument/formatting") then
-                                vim.api.nvim_create_autocmd("BufWritePre", {
-                                    buffer = bufnr,
-                                    callback = function()
-                                        vim.lsp.buf.format({ async = false })
-                                    end,
-                                })
-                            end
-                        end,
-                    }
-                end,
+        vim.lsp.config("lua_ls", {
+            settings = {
+                Lua = {
+                    runtime = { version = "Lua 5.1" },
+                    diagnostics = {
+                        globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                    },
+                },
+            },
+        })
 
-                ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
-
-                ["clangd"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.clangd.setup {
-                        capabilities = capabilities,
-                        cmd = {
-                            "clangd",
-                            "--background-index",
-                            --"--clang-tidy",
-                            "--header-insertion=iwyu",
-                            "--completion-style=detailed",
-                        },
-                        filetypes = { "c", "cpp", "cuda", "proto"},
-                    }
-                end,
-            }
+        vim.lsp.config("clangd", {
+            cmd = {
+                "clangd",
+                "--background-index",
+                --"--clang-tidy",
+                "--header-insertion=iwyu",
+                "--completion-style=detailed",
+                "--query-driver=/usr/bin/g++,/usr/bin/c++,/usr/bin/cc",
+            },
+            filetypes = { "c", "cpp", "cuda", "proto" },
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
