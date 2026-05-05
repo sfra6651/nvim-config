@@ -25,7 +25,7 @@ end, vim.api.nvim_create_namespace('auto_hlsearch'))
 -- Appearance
 opt.relativenumber = true
 opt.termguicolors = true
-opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250"
+opt.guicursor = "a:block,a:blinkwait500-blinkoff500-blinkon500"
 -- opt.colorcolumn = '100'
 -- opt.signcolumn = "yes"
 opt.cmdheight = 1
@@ -47,3 +47,18 @@ opt.mouse:append('a')
 opt.clipboard:append("unnamedplus")
 opt.modifiable = true
 opt.encoding = "UTF-8"
+
+-- Windows: use Developer PowerShell so cl.exe / cmake / etc. are on PATH
+if vim.fn.has("win32") == 1 then
+  local vsdevshell = "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\Tools\\Launch-VsDevShell.ps1"
+  opt.shell = "pwsh"
+  opt.shellcmdflag = table.concat({
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command",
+    "$PSStyle.OutputRendering='PlainText';",
+    "& '" .. vsdevshell .. "' -SkipAutomaticLocation -Arch amd64 -HostArch amd64 | Out-Null;",
+  }, " ")
+  opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+  opt.shellpipe  = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+  opt.shellquote = ""
+  opt.shellxquote = ""
+end
