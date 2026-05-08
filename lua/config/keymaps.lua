@@ -5,6 +5,7 @@ vim.keymap.set("n", "<leader>f", ":NvimTreeToggle<CR>", {  desc = 'toggle file t
 -- Buffer navigation
 vim.keymap.set('n', '<leader>n', ':bnext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<leader>p', ':bprev<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>l', '<cmd>b#<CR>', { desc = 'Jump to last buffer' })
 
 -- Save
 vim.keymap.set("n", "<leader>s", "<cmd>w<CR>", {desc = "write file"})
@@ -24,6 +25,37 @@ vim.keymap.set("n", "<leader>fa", ":Telescope <CR>")
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>")
 vim.keymap.set("n", "<leader>fr", ":Telescope lsp_references<CR>")
+vim.keymap.set('n', '<leader>ft', function()
+  local pickers = require('telescope.pickers')
+  local finders = require('telescope.finders')
+  local conf = require('telescope.config').values
+  local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
+
+  local term_bufs = vim.tbl_filter(function(b)
+    return vim.bo[b].buftype == 'terminal'
+  end, vim.api.nvim_list_bufs())
+
+  pickers.new({}, {
+    prompt_title = 'Terminal buffers',
+    finder = finders.new_table({
+      results = term_bufs,
+      entry_maker = function(b)
+        local name = vim.api.nvim_buf_get_name(b)
+        return { value = b, display = string.format('%d  %s', b, name), ordinal = name }
+      end,
+    }),
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr)
+      actions.select_default:replace(function()
+        local entry = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        vim.api.nvim_set_current_buf(entry.value)
+      end)
+      return true
+    end,
+  }):find()
+end, { desc = 'Find terminal buffers' })
 
 -- Indenting
 vim.keymap.set("v", "<", ">gv")

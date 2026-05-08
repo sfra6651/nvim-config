@@ -93,6 +93,11 @@ return {
             }
         })
 
+        vim.lsp.config("slangd", {
+            capabilities = capabilities,
+        })
+        vim.lsp.enable("slangd")
+
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
             -- `/` cmdline setup.

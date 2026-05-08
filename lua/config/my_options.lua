@@ -30,6 +30,7 @@ opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinko
 -- opt.signcolumn = "yes"
 opt.cmdheight = 1
 opt.scrolloff = 8
+opt.showtabline = 0
 --opt.completeopt = "menuone,noinsert,noselect"
 
 -- Behaviour
@@ -47,3 +48,10 @@ opt.mouse:append('a')
 opt.clipboard:append("unnamedplus")
 opt.modifiable = true
 opt.encoding = "UTF-8"
+
+-- Unlist terminal buffers so :bnext / :bprev skip them
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function(args)
+    vim.bo[args.buf].buflisted = false
+  end,
+})
