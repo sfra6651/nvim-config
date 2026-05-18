@@ -22,7 +22,7 @@ local opts = {
 		lazy = true,
 	},
 	install = {
-		colorscheme = {"my_matrix", "onedark"}
+		colorscheme = {"my_matrix", "my_zig", "onedark"}
 	},
 	rtp = {
 		disabled_plugins = {
@@ -44,5 +44,5 @@ local opts = {
 
 require("lazy").setup('plugins', opts)
 
--- Active colorscheme. Options: 'my_matrix' (local, colors/my_matrix.lua), 'my_one_dark_minimal' (local), 'onedark' (plugin).
+-- Active colorscheme. Options: 'my_matrix' (local), 'my_zig' (local), 'my_one_dark_minimal' (local), 'onedark' (plugin).
 vim.cmd('colorscheme my_matrix')
